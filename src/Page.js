@@ -6,9 +6,7 @@ import {
   decreaseAction,
 } from './actions';
 
-class Page extends PureComponent {
-  render() {
-    const { value, incrementAction, decreaseAction } = this.props;
+function  Page({ value, incrementAction, decreaseAction }){
     return (
       <div>
         <h1>{value}</h1>
@@ -16,7 +14,6 @@ class Page extends PureComponent {
         <button onClick={decreaseAction}>decrease</button>
       </div>
     );
-  }
 }
 
 
