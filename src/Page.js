@@ -1,29 +1,32 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
 
-import {
-  incrementAction,
-  decreaseAction,
-} from './actions';
+import { incrementAction, decreaseAction } from "./actions";
 
-function  Page({ value, incrementAction, decreaseAction }){
-    return (
-      <div>
-        <h1>{value}</h1>
-        <button onClick={incrementAction}>increment</button>
-        <button onClick={decreaseAction}>decrease</button>
-      </div>
-    );
+function Page() {
+  const value = useSelector((state) => state.value);
+  const dispatch = useDispatch();
+  const incrementAction1 = () => dispatch(incrementAction());
+  const decreaseAction1 = () => dispatch(decreaseAction());
+
+  return (
+    <div>
+      <h1>{value}</h1>
+      <button onClick={incrementAction1}>increment</button>
+      <button onClick={decreaseAction1}>decrease</button>
+    </div>
+  );
 }
 
+// const mapStateToProps = (state) => ({
+//   value: state.value,
+// });
 
-const mapStateToProps = (state) => ({
-  value: state.value,
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   incrementAction: () => dispatch(incrementAction()),
+//   decreaseAction: () => dispatch(decreaseAction()),
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  incrementAction: () => dispatch(incrementAction()),
-  decreaseAction: () => dispatch(decreaseAction()),
-});
+// export default connect(null, mapDispatchToProps)(Page);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Page);
+export default Page;
